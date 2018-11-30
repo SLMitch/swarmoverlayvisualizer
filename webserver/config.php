@@ -1,4 +1,5 @@
 <?php
-$db = new PDO('mysql:host=localhost;dbname=databasename;charset=utf8mb4', 'databaseuser', 'databasepassword'); //Change the mysql database name, username and password
-$dockerapihost = "hostname:4243"; //location of Docker Swarm API, change to yours
+    $db = new PDO('mysql:host=mariadb;dbname=swarmoverlayvisualizer;charset=utf8mb4', 'root', 'swarmoverlayvisualizer');
+    
+    $dockerapihost = $_GET['host'].":2375"; //location of Docker Swarm API, change to yours
 ?>

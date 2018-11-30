@@ -2,7 +2,7 @@
 #Run the script on a set interval using crontab.
 #Please change the address of the webserver.
 
-webserver = "http://yourwebserver"
+webserver = "http://webserver"
 import subprocess
 import os
 import requests

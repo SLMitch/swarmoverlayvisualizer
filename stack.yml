@@ -1,0 +1,35 @@
+version: '3.6'
+
+services:
+  webserver:
+    image: slmitch/swarmoverlayvisualizer-webserver
+    ports:
+      - 8200:80
+  mariadb:
+    image: it-docker-public.binary-repository.digiplug.com/mariadb:10.3.9
+    volumes:
+      - swarmoverlayvisualizerdb:/var/lib/mysql/
+    environment:
+      TZ: Europe/Paris
+      MYSQL_DATABASE: swarmoverlayvisualizer
+      MYSQL_ROOT_PASSWORD: swarmoverlayvisualizer
+  agent:
+    image: slmitch/swarmoverlayvisualizer-agent
+    environment:
+      TZ: Europe/Paris
+      MYSQL_DATABASE: swarmoverlayvisualizer
+      MYSQL_ROOT_PASSWORD: swarmoverlayvisualizer
+    deploy:
+      mode: global
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+networks:
+  outside:
+    external:
+      name: "host"
+
+volumes:
+  swarmoverlayvisualizerdb:
+
